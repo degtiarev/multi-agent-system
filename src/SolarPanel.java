@@ -17,4 +17,9 @@ public class SolarPanel {
         amountOfGeneratedEnergy = peakPower * sunLevel;
     }
 
+
+    public double getAmountOfGeneratedEnergy() {
+        return amountOfGeneratedEnergy;
+    }
+
 }

@@ -14,19 +14,19 @@ public class Main {
 
     private static Heater agentA = new Heater(consumtionCoeficintA, lowLimitA, upLimitA);;
     private static Heater agentB = new Heater(consumtionCoeficintB, lowLimitB, upLimitB);;
-    private static Controller AgentC = new Controller();;
+    private static Controller agentC = new Controller();;
     private static ArrayList<Weather> weatherSet = new ArrayList<Weather>();
 
     public static void main(String[] args) {
 
         populateWeatherSet();
 
-        for (Weather: weatherSet)
+        for (Weather weatherItem: weatherSet)
         {
-
-
+            agentA.setCurrentWeather(weatherItem);
+            agentB.setCurrentWeather(weatherItem);
+            agentC.setCurrentWeather(weatherItem);
         }
-
 
     }
 

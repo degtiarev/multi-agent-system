@@ -6,6 +6,9 @@ public class Heater {
     int lowLimit;
     int upLimit;
     double consumptionCoefficient;
+    
+
+    Weather currentWeather;
 
 
     public Heater (double consumptionCoefficient, int lowLimit, int upLimit)
@@ -25,6 +28,10 @@ public class Heater {
            energies.add(energy);
        }
        return energies;
+    }
+
+    public void setCurrentWeather(Weather currentWeather) {
+        this.currentWeather = currentWeather;
     }
 
 

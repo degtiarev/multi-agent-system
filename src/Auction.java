@@ -1,9 +1,20 @@
 public class Auction {
 
-    double amountOfEnergy;
+    double bid;
     double price;
+    boolean isParetoEfficient = false;
 
-    void sell()
+    void start()
+    {
+
+    }
+
+    void end()
+    {
+
+    }
+
+    void updatePrice()
     {
 
     }
