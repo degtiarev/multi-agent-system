@@ -2,31 +2,37 @@ import java.util.ArrayList;
 
 public class Heater {
 
+    String name;
+
     double amoutOfCredits = 500;
     int lowLimit;
     int upLimit;
     double consumptionCoefficient;
-    double currentTemperature;
-
 
     Weather currentWeather;
+    ArrayList<Double> energies = new ArrayList<Double>();
 
 
-    public Heater(double consumptionCoefficient, int lowLimit, int upLimit) {
+    public Heater(String name, double consumptionCoefficient, int lowLimit, int upLimit) {
+        this.name = name;
         this.lowLimit = lowLimit;
         this.upLimit = upLimit;
         this.consumptionCoefficient = consumptionCoefficient;
     }
 
 
-    public ArrayList<Double> computeEnergyDemand(double currentTemperature) {
-        ArrayList<Double> energies = new ArrayList<Double>();
-        for (int i = lowLimit; i >= upLimit; i++) {
+    public void computeEnergyDemand() {
 
-            double energy = consumptionCoefficient + 0.5 * (i - currentTemperature);
+        System.out.print(name + " " + "demands: ");
+        for (int i = lowLimit; i <= upLimit; i++) {
+
+            double energy = consumptionCoefficient + 0.5 * (i - currentWeather.getTemperature());
             energies.add(energy);
+
+            System.out.print(energy + " ");
+
         }
-        return energies;
+        System.out.println();
     }
 
     public void setCurrentWeather(Weather currentWeather) {
@@ -34,17 +40,8 @@ public class Heater {
     }
 
 
-    public void heat(double currentTemperature) {
-
-
-    }
-
-    public void getCredits() {
-
-    }
-
-    public void getEnergy() {
-
+    public void makeStep() {
+        computeEnergyDemand();
     }
 
 

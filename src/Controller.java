@@ -27,9 +27,14 @@ public class Controller {
 
         energyCeiling = solarEnergy + additionalEnergy;
 
-        System.out.println("Solar energy:" + solarEnergy);
-        System.out.println("Additional energy:" + additionalEnergy);
-        System.out.println("Total energy:" + energyCeiling);
+        System.out.println("Solar energy: " + solarEnergy);
+        System.out.println("Additional energy: " + additionalEnergy);
+        System.out.println("Total energy: " + energyCeiling);
+
+    }
+
+    void sellEnergy(Heater agentA, Heater agentB) {
+
 
     }
 
@@ -39,9 +44,9 @@ public class Controller {
     }
 
 
-    void makeStep() {
+    void makeStep(Heater agentA, Heater agentB) {
         adjustCeiling();
-
+        sellEnergy(agentA, agentB);
 
     }
 }
