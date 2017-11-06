@@ -1,22 +1,19 @@
 public class Auction {
 
-    double bid;
-    double price;
+    double price = 3;
     boolean isParetoEfficient = false;
 
-    void start()
-    {
-
+    String action(double bidA, double bidB) {
+        if (bidA > bidB) return "AgentA";
+        else return "AgentB";
     }
 
-    void end()
-    {
-
+    public double getPrice() {
+        return price;
     }
 
-    void updatePrice()
-    {
-
+    public void setPrice(double price) {
+        this.price = price;
     }
 
 }

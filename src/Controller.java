@@ -14,8 +14,7 @@ public class Controller {
 
     Random r = new Random();
 
-    void adjustCeiling()
-    {
+    void adjustCeiling() {
         double solarEnergy = 0;
 
         if (currentWeather.isSunShines) {
@@ -28,6 +27,10 @@ public class Controller {
 
         energyCeiling = solarEnergy + additionalEnergy;
 
+        System.out.println("Solar energy:" + solarEnergy);
+        System.out.println("Additional energy:" + additionalEnergy);
+        System.out.println("Total energy:" + energyCeiling);
+
     }
 
 
@@ -36,10 +39,8 @@ public class Controller {
     }
 
 
-    void makeStep()
-    {
-
-
+    void makeStep() {
+        adjustCeiling();
 
 
     }

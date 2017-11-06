@@ -12,20 +12,31 @@ public class Main {
     private static final int lowLimitB = 20;
     private static final int upLimitB = 23;
 
-    private static Heater agentA = new Heater(consumtionCoeficintA, lowLimitA, upLimitA);;
-    private static Heater agentB = new Heater(consumtionCoeficintB, lowLimitB, upLimitB);;
-    private static Controller agentC = new Controller();;
+    private static Heater agentA = new Heater(consumtionCoeficintA, lowLimitA, upLimitA);
+    ;
+    private static Heater agentB = new Heater(consumtionCoeficintB, lowLimitB, upLimitB);
+    ;
+    private static Controller agentC = new Controller();
+    ;
     private static ArrayList<Weather> weatherSet = new ArrayList<Weather>();
 
     public static void main(String[] args) {
 
         populateWeatherSet();
+        int i = 0;
 
-        for (Weather weatherItem: weatherSet)
-        {
+        for (Weather weatherItem : weatherSet) {
+            System.out.println("Step: " + i);
+
             agentA.setCurrentWeather(weatherItem);
             agentB.setCurrentWeather(weatherItem);
             agentC.setCurrentWeather(weatherItem);
+            agentC.makeStep();
+
+            i++;
+
+            System.out.println("*********************************************************");
+            System.out.println();
         }
 
     }

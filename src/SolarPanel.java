@@ -1,19 +1,17 @@
 public class SolarPanel {
 
-    private static final double peakPower  = 3;
+    private static final double peakPower = 3;
 
     double sunLevel;
     double amountOfGeneratedEnergy;
 
 
-    public void setSunLevel(double sunLevel)
-    {
+    public void setSunLevel(double sunLevel) {
         this.sunLevel = sunLevel;
 
     }
 
-    public void generateEnergy()
-    {
+    public void generateEnergy() {
         amountOfGeneratedEnergy = peakPower * sunLevel;
     }
 
