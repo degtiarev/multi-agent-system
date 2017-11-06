@@ -1,6 +1,6 @@
 public class Auction {
 
-    double price = 3;
+    double price = 3.5;
     boolean isParetoEfficient = false;
 
     String action(double bidA, double bidB) {

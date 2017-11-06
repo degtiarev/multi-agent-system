@@ -2,7 +2,7 @@ import java.util.Random;
 
 public class Controller {
 
-    private static final double limit = 4.5;
+    private static final double limit = 4.5 * 1.5;
 
     SolarPanel solarPanel = new SolarPanel();
     Auction auction = new Auction();

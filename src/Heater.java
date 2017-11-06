@@ -1,8 +1,10 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Heater {
 
     String name;
+    Random random;
 
     double amoutOfCredits = 500;
     int lowLimit;
@@ -10,10 +12,13 @@ public class Heater {
     double consumptionCoefficient;
 
     Weather currentWeather;
+
+    Auction auction;
     ArrayList<Double> energies = new ArrayList<Double>();
 
     double qMatrix[][];
-    double rMatrix[];
+    double rMatrix[][];
+    double pMatrix[][];
 
 
     public Heater(String name, double consumptionCoefficient, int lowLimit, int upLimit) {
@@ -21,33 +26,52 @@ public class Heater {
         this.lowLimit = lowLimit;
         this.upLimit = upLimit;
         this.consumptionCoefficient = consumptionCoefficient;
+        random = new Random();
 
         int matrixSize = upLimit - lowLimit + 3;
 
-        qMatrix = new double[matrixSize][2];
-        rMatrix = new double[matrixSize];
+        qMatrix = new double[matrixSize][matrixSize];
+        rMatrix = new double[matrixSize][matrixSize];
+        pMatrix = new double[matrixSize][matrixSize];
 
-        double reward=50;
+
         for (int i=0; i<matrixSize; i++)
         {
 
-            // populating Q matrix
-            for (int j=0; j<2; j++)
+            double reward = 50;
+            double penalty = -50;
+            double penaltyForStaying = -20;
+
+            for (int j=0; j<matrixSize; j++)
             {
                 qMatrix[i][j] = 0;
+                pMatrix[i][j] = random.nextDouble();
+
+
+                if (j==0 || j==matrixSize-1)
+                {
+                    rMatrix[i][j] = penalty;
+                }
+
+                else
+                {
+                    rMatrix[i][j] = reward;
+                    reward += 10;
+                }
+
+                if (i==j)
+                {
+                    rMatrix[i][j] = penaltyForStaying;
+
+                }
+
+                if ((i==j && j==0 ) || (i==j && j==matrixSize-1))
+                {
+                    rMatrix[i][j] = penalty + penaltyForStaying;
+                }
+
             }
 
-            // populating R matrix
-            if ((i==0) || (i==matrixSize-1) )
-            {
-                rMatrix[i]=-50;
-            }
-
-            else
-            {
-                rMatrix[i]=reward;
-                reward += 10;
-            }
 
         }
 
@@ -63,7 +87,6 @@ public class Heater {
             energies.add(energy);
 
             System.out.print(energy + " ");
-
         }
         System.out.println();
     }
@@ -72,13 +95,23 @@ public class Heater {
         this.currentWeather = currentWeather;
     }
 
+    public void setAuction(Auction auction) {
+        this.auction = auction;
+    }
+
     public void makeStep() {
         computeEnergyDemand();
+
+        double price = auction.getPrice();
+        if ( price<amoutOfCredits)
+        {
+
+
+        }
+
+
     }
 
-    public void buyEnergy()
-    {
 
-    }
 
 }
