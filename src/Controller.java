@@ -23,18 +23,28 @@ public class Controller {
             solarEnergy = solarPanel.getAmountOfGeneratedEnergy();
         }
 
-        double additionalEnergy = r.nextDouble() * limit;
+        double additionalEnergy = 0;
+        for (int i=0; i<6; i++) {
+            additionalEnergy += r.nextDouble() * limit ;
+        }
 
         energyCeiling = solarEnergy + additionalEnergy;
 
-        System.out.println("Solar energy: " + solarEnergy);
-        System.out.println("Additional energy: " + additionalEnergy);
-        System.out.println("Total energy: " + energyCeiling);
+        System.out.println("Solar energy for 6 hours: " + solarEnergy);
+        System.out.println("Additional energy for 6 hours: " + additionalEnergy);
+        System.out.println("Total energy for 6 hours: " + energyCeiling);
 
     }
 
     void sellEnergy(Heater agentA, Heater agentB) {
 
+        boolean isEnd = true;
+
+        while (!isEnd)
+        {
+
+
+        }
 
     }
 

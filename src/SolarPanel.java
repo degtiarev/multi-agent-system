@@ -1,6 +1,6 @@
 public class SolarPanel {
 
-    private static final double peakPower = 3;
+    private static final double peakPower = 3 * 2.5;
 
     double sunLevel;
     double amountOfGeneratedEnergy;
@@ -12,7 +12,7 @@ public class SolarPanel {
     }
 
     public void generateEnergy() {
-        amountOfGeneratedEnergy = peakPower * sunLevel;
+        amountOfGeneratedEnergy = 6 * peakPower * sunLevel;
     }
 
 
