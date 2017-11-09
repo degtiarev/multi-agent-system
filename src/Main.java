@@ -19,7 +19,10 @@ public class Main {
 
     public static void main(String[] args) {
 
+        agentA.setAuction(agentC.getAuction());
+        agentB.setAuction(agentC.getAuction());
         populateWeatherSet();
+
         int i = 0;
 
         for (Weather weatherItem : weatherSet) {

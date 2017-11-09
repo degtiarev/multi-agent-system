@@ -24,8 +24,8 @@ public class Controller {
         }
 
         double additionalEnergy = 0;
-        for (int i=0; i<6; i++) {
-            additionalEnergy += r.nextDouble() * limit ;
+        for (int i = 0; i < 6; i++) {
+            additionalEnergy += r.nextDouble() * limit;
         }
 
         energyCeiling = solarEnergy + additionalEnergy;
@@ -40,8 +40,7 @@ public class Controller {
 
         boolean isEnd = true;
 
-        while (!isEnd)
-        {
+        while (!isEnd) {
 
 
         }
@@ -53,6 +52,9 @@ public class Controller {
         this.currentWeather = currentWeather;
     }
 
+    public Auction getAuction() {
+        return auction;
+    }
 
     void makeStep(Heater agentA, Heater agentB) {
         adjustCeiling();
