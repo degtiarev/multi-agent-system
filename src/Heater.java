@@ -5,26 +5,24 @@ public class Heater {
 
     String name;
     Random random;
+    double consumptionCoefficient;
+    Weather currentWeather;
+    private static final double gamma = 0.5;
 
     double amoutOfCredits = 500;
-    double upCostLimit;
-    int currentDemand = 0;
+    double currentDemand = 0;
+    int currentRequredTemperature = 0;
 
     int currentTemperature;
     int lowLimit;
     int upLimit;
-    double consumptionCoefficient;
-
-    Weather currentWeather;
-
-    Auction auction;
-    ArrayList<Double> energies = new ArrayList<Double>();
 
     double qMatrix[][];
+
     double rMatrix[][];
     double pMatrix[][];
+    int matrixSize;
 
-    boolean isStepMaid = false;
 
     public Heater(String name, double consumptionCoefficient, int lowLimit, int upLimit) {
         this.name = name;
@@ -34,102 +32,113 @@ public class Heater {
         random = new Random();
         currentTemperature = lowLimit + random.nextInt(upLimit - lowLimit + 1);
 
-        int matrixSize = upLimit - lowLimit + 3;
+        matrixSize = upLimit - lowLimit + 3;
 
         qMatrix = new double[matrixSize][matrixSize];
         rMatrix = new double[matrixSize][matrixSize];
         pMatrix = new double[matrixSize][matrixSize];
 
 
-        for (int i=0; i<matrixSize; i++)
-        {
+        for (int i = 0; i < matrixSize; i++) {
 
             double reward = 50;
             double penalty = -50;
             double penaltyForStaying = -20;
 
-            for (int j=0; j<matrixSize; j++)
-            {
+            for (int j = 0; j < matrixSize; j++) {
                 qMatrix[i][j] = 0;
                 pMatrix[i][j] = random.nextDouble();
 
 
-                if (j==0 || j==matrixSize-1)
-                {
+                if (j == 0 || j == matrixSize - 1) {
                     rMatrix[i][j] = penalty;
-                }
-
-                else
-                {
+                } else {
                     rMatrix[i][j] = reward;
                     reward += 10;
-                }
+                } // else
 
-                if (i==j)
-                {
+                if (i == j) {
                     rMatrix[i][j] = penaltyForStaying;
+                } // if
 
-                }
-
-                if ((i==j && j==0 ) || (i==j && j==matrixSize-1))
-                {
+                if ((i == j && j == 0) || (i == j && j == matrixSize - 1)) {
                     rMatrix[i][j] = penalty + penaltyForStaying;
-                }
+                } // if
 
-            }
+            } //for j
 
-
-        }
+        } // for i
 
     }
 
 
     public void computeEnergyDemand() {
 
-        System.out.print(name + " " + "demands for 6 ours: ");
-        for (int i = lowLimit; i <= upLimit; i++) {
+        if (currentTemperature < lowLimit)
+            currentTemperature--;
 
-            double energy = 6 * consumptionCoefficient + 0.5 * (i - currentWeather.getTemperature());
+        int currentStage = currentTemperature - lowLimit;
 
-            if ( i > lowLimit) energy = energy - energies.get(0);
-            energies.add(energy);
+        double maxMaxTU=-100000000;
+        int stageWithMaxTU=0;
+        for (int i = 0; i < matrixSize; i++) {
+            double currentTU = pMatrix[currentStage][i] * qMatrix[currentStage][i];
 
-            System.out.print(energy + " ");
+            if (currentTU > maxMaxTU)
+            {
+                maxMaxTU = currentTU;
+                stageWithMaxTU = i;
+            }
         }
-        System.out.println();
+
+        double utility = rMatrix[currentStage][stageWithMaxTU] * gamma + maxMaxTU;
+        qMatrix[currentStage][stageWithMaxTU] = utility;
+
+        currentRequredTemperature = lowLimit + stageWithMaxTU;
+
+        currentDemand = 6 * consumptionCoefficient + 0.5 * (currentRequredTemperature - currentWeather.getTemperature());
+
+        System.out.println(name + " " + "demands for 6 ours: " + currentDemand);
+
+    }
+
+    public double getCurrentDemand() {
+        return currentDemand;
     }
 
     public void setCurrentWeather(Weather currentWeather) {
         this.currentWeather = currentWeather;
     }
 
-    public void setAuction(Auction auction) {
-        this.auction = auction;
+    public double getAmoutOfCredits() {
+        return amoutOfCredits;
     }
 
-    public void makeStep() {
-        computeEnergyDemand();
-
-        int stage = currentTemperature - lowLimit;
-        upCostLimit = qMatrix[stage][stage+1] - auction.getPrice() * energies.get(currentDemand);
-        double currentPenalty = qMatrix[stage][stage];
-
-        double currentPrice = auction.getPrice();
-        double cost = currentPrice * currentDemand;
-
-
-
-        if (cost < amoutOfCredits)
-            if (!isStepMaid && currentPenalty < upCostLimit )
-        {
-
-
-
-        }
-
-
+    public void setAmoutOfCredits(double amoutOfCredits) {
+        this.amoutOfCredits = amoutOfCredits;
     }
 
+    public int getCurrentTemperature() {
+        return currentTemperature;
+    }
 
+    public void setCurrentTemperature(int currentTemperature) {
+        this.currentTemperature = currentTemperature;
+    }
+
+    public double[][] getrMatrix() {
+        return rMatrix;
+    }
+
+    public int getCurrentStage() {
+        return currentTemperature - lowLimit;
+    }
+
+    public int getCurrentRequredTemperature() {
+        return currentRequredTemperature;
+    }
+    public int getCurrentRequredStage() {
+        return currentRequredTemperature - lowLimit;
+    }
 
 }

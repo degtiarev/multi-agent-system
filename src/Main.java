@@ -19,8 +19,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        agentA.setAuction(agentC.getAuction());
-        agentB.setAuction(agentC.getAuction());
         populateWeatherSet();
 
         int i = 0;
@@ -32,8 +30,9 @@ public class Main {
             agentB.setCurrentWeather(weatherItem);
             agentC.setCurrentWeather(weatherItem);
 
-            agentA.makeStep();
-            agentB.makeStep();
+            agentA.computeEnergyDemand();
+            agentB.computeEnergyDemand();
+
             agentC.makeStep(agentA, agentB);
 
             i++;
