@@ -20,6 +20,7 @@ public class Main {
     public static void main(String[] args) {
 
         populateWeatherSet();
+        System.out.println("*********************************************************");
 
         int i = 0;
 

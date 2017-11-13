@@ -1,6 +1,6 @@
 public class SolarPanel {
 
-    private static final double peakPower = 3 ;
+    private static final double peakPower = 3;
 
     double sunLevel;
     double amountOfGeneratedEnergy;
