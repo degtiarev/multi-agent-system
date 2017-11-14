@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -69,6 +70,8 @@ public class Heater {
 
         } // for i
 
+        DecimalFormat df = new DecimalFormat("0.0");
+
         System.out.println("Creating " + name + "...");
         System.out.println("Low limit: " + lowLimit);
         System.out.println("Up limit: " + upLimit);
@@ -76,15 +79,16 @@ public class Heater {
         System.out.println("Initial Q matrix: ");
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
-                System.out.print(qMatrix[i][j] + " ");
+                System.out.print(df.format(qMatrix[i][j]) + " ");
             }
             System.out.println();
         }
 
+
         System.out.println("R matrix: ");
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
-                System.out.print(rMatrix[i][j] + " ");
+                System.out.print(df.format(rMatrix[i][j]) + " ");
             }
             System.out.println();
         }
@@ -92,7 +96,7 @@ public class Heater {
         System.out.println("P matrix: ");
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
-                System.out.print(pMatrix[i][j] + " ");
+                System.out.print(df.format(pMatrix[i][j]) + " ");
             }
             System.out.println();
         }
@@ -102,10 +106,10 @@ public class Heater {
 
     public void computeEnergyDemand() {
 
-        if (currentTemperature < lowLimit)
+        if (currentTemperature > lowLimit)
             currentTemperature--;
 
-        int currentStage = currentTemperature - lowLimit;
+        int currentStage = currentTemperature - lowLimit + 1;
 
         double maxMaxTU = -100000000;
         int stageWithMaxTU = 0;
@@ -121,7 +125,7 @@ public class Heater {
         double utility = rMatrix[currentStage][stageWithMaxTU] * gamma + maxMaxTU;
         qMatrix[currentStage][stageWithMaxTU] = utility;
 
-        currentRequredTemperature = lowLimit + stageWithMaxTU;
+        currentRequredTemperature = lowLimit + stageWithMaxTU - 1;
 
         currentDemand = 6 * consumptionCoefficient + 0.5 * (currentRequredTemperature - currentWeather.getTemperature());
 
@@ -163,7 +167,7 @@ public class Heater {
     }
 
     public int getCurrentStage() {
-        return currentTemperature - lowLimit;
+        return currentTemperature - lowLimit + 1;
     }
 
     public int getCurrentRequredTemperature() {
@@ -171,13 +175,14 @@ public class Heater {
     }
 
     public int getCurrentRequredStage() {
-        return currentRequredTemperature - lowLimit;
+        return currentRequredTemperature - lowLimit + 1;
     }
 
     public void showQmatrix() {
+        DecimalFormat df = new DecimalFormat("0.0");
         for (int i = 0; i < matrixSize; i++) {
             for (int j = 0; j < matrixSize; j++) {
-                System.out.print(qMatrix[i][j] + " ");
+                System.out.print(df.format(qMatrix[i][j]) + " ");
             }
             System.out.println();
         }
