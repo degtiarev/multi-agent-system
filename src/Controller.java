@@ -87,13 +87,9 @@ public class Controller {
                 agentA.setCurrentTemperature(currentRequredTemperatureA); // set new temperature to heater
 
                 // exhanging credits for reward/penalty according R matrix
-                if (rMatrixA[currentStageA][currentRequiredStageA] > 0) {
-                    agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() + rMatrixA[currentStageA][currentRequiredStageA]); // get reward to heater for being in curent state
-                    this.creditAmount -= rMatrixA[currentStageA][currentRequiredStageA]; // withdraw reward from controller
-                } else {
-                    agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() - rMatrixA[currentStageA][currentRequiredStageA]); // get penalty to heater for being in curent state
-                    this.creditAmount += rMatrixA[currentStageA][currentRequiredStageA]; // put penalty back to controller
-                }
+                agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() + rMatrixA[currentStageA][currentRequiredStageA]); // get reward to heater for being in curent state
+                this.creditAmount -= rMatrixA[currentStageA][currentRequiredStageA]; // withdraw reward from controller
+
                 isAboughtEnergy = true;
                 System.out.println("Agent A bought all need energy");
             }
@@ -104,13 +100,9 @@ public class Controller {
                 agentB.setCurrentTemperature(currentRequredTemperatureB); // set new temperature to agent
 
                 // exhanging credits for reward/penalty according R matrix
-                if (rMatrixB[currentStageB][currentRequiredStageB] > 0) {
-                    agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() + rMatrixB[currentStageB][currentRequiredStageB]); // get reward to heater for being in curent state
-                    this.creditAmount -= rMatrixB[currentStageB][currentRequiredStageB]; // withdraw reward from controller
-                } else {
-                    agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() - rMatrixB[currentStageB][currentRequiredStageB]); // get penalty to heater for being in curent state
-                    this.creditAmount += rMatrixB[currentStageB][currentRequiredStageB]; // put penalty back to controller
-                }
+                agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() + rMatrixB[currentStageB][currentRequiredStageB]); // get reward to heater for being in curent state
+                this.creditAmount -= rMatrixB[currentStageB][currentRequiredStageB]; // withdraw reward from controller
+
 
                 isBboughtEnergy = true;
                 System.out.println("Agent B bought all need energy");
@@ -130,13 +122,9 @@ public class Controller {
                 System.out.println("Agent A did not bought energy, got penalty");
 
                 // exhanging credits for reward/penalty according R matrix
-                if (rMatrixA[currentStageA][currentStageA] > 0) {
-                    agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() + rMatrixA[currentStageA][currentStageA]); // get reward to heater for being in curent state
-                    this.creditAmount -= rMatrixA[currentStageA][currentStageA]; // withdraw reward from controller
-                } else {
-                    agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() - rMatrixA[currentStageA][currentStageA]); // get penalty to heater for being in curent state
-                    this.creditAmount += rMatrixA[currentStageA][currentStageA]; // put penalty back to controller
-                }
+                agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() + rMatrixA[currentStageA][currentStageA]); // get reward to heater for being in curent state
+                this.creditAmount -= rMatrixA[currentStageA][currentStageA]; // withdraw reward from controller
+
 
             }
 
@@ -145,13 +133,9 @@ public class Controller {
                 System.out.println("Agent B did not bought energy, got penalty");
 
                 // exhanging credits for reward/penalty according R matrix
-                if (rMatrixB[currentStageB][currentStageB] > 0) {
-                    agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() + rMatrixB[currentStageB][currentStageB]); // get reward to heater for being in curent state
-                    this.creditAmount -= rMatrixB[currentStageB][currentStageB]; // withdraw reward from controller
-                } else {
-                    agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() - rMatrixB[currentStageB][currentStageB]); // get penalty to heater for being in curent state
-                    this.creditAmount += rMatrixB[currentStageB][currentStageB]; // put penalty back to controller
-                }
+                agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() + rMatrixB[currentStageB][currentStageB]); // get reward to heater for being in curent state
+                this.creditAmount -= rMatrixB[currentStageB][currentStageB]; // withdraw reward from controller
+
 
             }
         }
@@ -248,23 +232,15 @@ public class Controller {
                 agentA.setCurrentTemperature(currentRequredTemperatureA); // set new temperature to agent
 
                 // exhanging credits for reward/penalty according R matrix
-                if (rMatrixA[currentStageA][currentRequiredStageA] > 0) {
-                    agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() + rMatrixA[currentStageA][currentRequiredStageA]); // get reward to heater for being in curent state
-                    this.creditAmount -= rMatrixA[currentStageA][currentRequiredStageA]; // withdraw reward from controller
-                } else {
-                    agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() - rMatrixA[currentStageA][currentRequiredStageA]); // get penalty to heater for being in curent state
-                    this.creditAmount += rMatrixA[currentStageA][currentRequiredStageA]; // put penalty back to controller
-                }
+                agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() + rMatrixA[currentStageA][currentRequiredStageA]); // get reward to heater for being in curent state
+                this.creditAmount -= rMatrixA[currentStageA][currentRequiredStageA]; // withdraw reward from controller
+
 
                 System.out.println("Agent B got penalty");
                 // exhanging credits for reward/penalty according R matrix
-                if (rMatrixB[currentStageB][currentStageB] > 0) {
-                    agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() + rMatrixB[currentStageB][currentStageB]); // get reward to heater for being in curent state
-                    this.creditAmount -= rMatrixB[currentStageB][currentStageB]; // withdraw reward from controller
-                } else {
-                    agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() - rMatrixB[currentStageB][currentStageB]); // get penalty to heater for being in curent state
-                    this.creditAmount += rMatrixB[currentStageB][currentStageB]; // put penalty back to controller
-                }
+                agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() + rMatrixB[currentStageB][currentStageB]); // get reward to heater for being in curent state
+                this.creditAmount -= rMatrixB[currentStageB][currentStageB]; // withdraw reward from controller
+
 
             } else {
                 System.out.println("Agent B got reward");
@@ -273,24 +249,15 @@ public class Controller {
                 agentB.setCurrentTemperature(currentRequredTemperatureB); // set new temperature to agent
 
                 // exhanging credits for reward/penalty according R matrix
-                if (rMatrixB[currentStageB][currentRequiredStageB] > 0) {
-                    agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() + rMatrixB[currentStageB][currentRequiredStageB]); // get reward to heater for being in curent state
-                    this.creditAmount -= rMatrixB[currentStageB][currentRequiredStageB]; // withdraw reward from controller
-                } else {
-                    agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() - rMatrixB[currentStageB][currentRequiredStageB]); // get penalty to heater for being in curent state
-                    this.creditAmount += rMatrixB[currentStageB][currentRequiredStageB]; // put penalty back to controller
-                }
+                agentB.setAmoutOfCredits(agentB.getAmoutOfCredits() + rMatrixB[currentStageB][currentRequiredStageB]); // get reward to heater for being in curent state
+                this.creditAmount -= rMatrixB[currentStageB][currentRequiredStageB]; // withdraw reward from controller
 
                 System.out.println("Agent A got penalty");
 
                 // exhanging credits for reward/penalty according R matrix
-                if (rMatrixA[currentStageA][currentStageA] > 0) {
-                    agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() + rMatrixA[currentStageA][currentStageA]); // get reward to heater for being in curent state
-                    this.creditAmount -= rMatrixA[currentStageA][currentStageA]; // withdraw reward from controller
-                } else {
-                    agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() - rMatrixA[currentStageA][currentStageA]); // get penalty to heater for being in curent state
-                    this.creditAmount += rMatrixA[currentStageA][currentStageA]; // put penalty back to controller
-                }
+                agentA.setAmoutOfCredits(agentA.getAmoutOfCredits() + rMatrixA[currentStageA][currentStageA]); // get reward to heater for being in curent state
+                this.creditAmount -= rMatrixA[currentStageA][currentStageA]; // withdraw reward from controller
+
             }
 
         } // !isEnd
