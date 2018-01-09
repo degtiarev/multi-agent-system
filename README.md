@@ -23,7 +23,7 @@ Auction class is used to provide English and Dutch auctions. Using these auction
 
 Solar Panel class represents solar panel element of the model. It generates the energy in the case of shining the sun.
 
-Heater class is used to implement two heater agents: A and B. It has the information about current temperature and starting position of agent, limits, amount of credits, consumption coe - cient, Q-matrix, Reward matrix and Probability matrix. We use Bellman equation to establish movement of agents and update their Q-matrices. Agent traverse through the Q-matrix which we update every step using Bellman equation. Finding the state to that agent wants to come, according its Q-matrix, we compute amount of energy demand to come to the state.
+Heater class is used to implement two heater agents: A and B. It has the information about current temperature and starting position of agent, limits, amount of credits, consumption coeficient, Q-matrix, Reward matrix and Probability matrix. We use Bellman equation to establish movement of agents and update their Q-matrices. Agent traverse through the Q-matrix which we update every step using Bellman equation. Finding the state to that agent wants to come, according its Q-matrix, we compute amount of energy demand to come to the state.
 
 Controller class is used to implement agent C, which updates the energy ceiling level (Total amount of energy), that depends on amount of energy from power-line (Additional energy) and sun level (Solar energy) and sells this energy to agents A and B conducting auctions and rewarding/penalize agents A and agent B and in accordance to Reward matrix of each of them.
 
@@ -59,6 +59,6 @@ In the end, both Q-matrices of agents A and B were updated according to their re
 
 ![image](https://user-images.githubusercontent.com/12521579/34739655-3d8b1ac0-f57d-11e7-9f8a-bba8f702bcce.png)
 
-Researching the results of di erent simulations we have not manage to clearly de ne whether or not agent A or agent B outper- forms the other in the end. Some results show that agent A goes bankrupt very fast and lose all credits on  fth or sixth iteration, other results show that agent B going to be bankrupt. Being or not being bankrupt depends on amount of auctions won particular agent and amount of rewards and penalties it gets throughout the simulation.
+Researching the results of di erent simulations we have not manage to clearly de ne whether or not agent A or agent B outperforms the other in the end. Some results show that agent A goes bankrupt very fast and lose all credits on  fth or sixth iteration, other results show that agent B going to be bankrupt. Being or not being bankrupt depends on amount of auctions won particular agent and amount of rewards and penalties it gets throughout the simulation.
 
 
